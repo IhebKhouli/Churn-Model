@@ -20,7 +20,15 @@ proc sgplot data=import_1;
 vbar original_operator / datalabel missing;
 label original_operator = "opérateur";
 run;
-
+/*Exporting the result*/
+proc export data=test_scored
+  outfile='/home/u63477506/sasuser.v94/RESULT.csv'
+  dbms=csv replace;
+run;
+proc export data=valid_scored
+  outfile='/home/u63477506/sasuser.v94/Validation_RESULT.csv'
+  dbms=csv replace;
+run;
 title "";
 proc sgplot data=import_2;
 vbar flag_smartphone / datalabel missing;
@@ -220,16 +228,30 @@ proc plm source=churn_logistic;
 score data=valid out=valid_scored predicted=p / ilink;
 run;
 
-/*Extracting the result*/
+/*Extracting the results*/
  data test_scored;
   set test_scored;
   if p > 0.5 then pch = 1;
   else pch = 0;
   keep subscriber_id ch pch;
  run;
-
+data valid_scored;
+  set valid_scored;
+  if p > 0.5 then pch = 1;
+  else pch = 0;
+  keep subscriber_id ch pch;
+ run;
 /* Confusion Matrix*/
  title 'Matrice de Confusion';
  proc freq data=test_scored;
   tables ch*pch / norow nocol nopercent;
  run;
+/*Exporting the result*/
+proc export data=test_scored
+  outfile='/home/u63477506/sasuser.v94/RESULT.csv'
+  dbms=csv replace;
+run;
+proc export data=valid_scored
+  outfile='/home/u63477506/sasuser.v94/Validation_RESULT.csv'
+  dbms=csv replace;
+run;

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a powerful SAS churn model designed to predict customer churn within the telecommunications industry, with a specific focus on Ooredoo. Customer churn is a critical concern for telecom companies, and this model is created to help Ooredoo better understand and proactively address this challenge.
+This repository contains a SAS churn model designed to predict customer churn within the telecommunications industry, with a specific focus on Ooredoo. Customer churn is a critical concern for telecom companies, and this model is created to help Ooredoo better understand and proactively address this challenge.
 
 ## Key Features
 
